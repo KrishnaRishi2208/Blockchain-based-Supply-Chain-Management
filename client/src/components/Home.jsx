@@ -1107,9 +1107,10 @@ function Home() {
               </div>
             )}
             {isUserRetailer === true && (
-              <div>
+              <div className="min-h-screen bg-gradient-to-r from-purple-600 to-indigo-800 p-8">
+              <div className="flex space-x-4 mb-8">
                 <button
-                  className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                  className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-colors duration-300 shadow-md"
                   onClick={() => {
                     setViewOrderProducts(true);
                     setViewContainers(false);
@@ -1120,7 +1121,7 @@ function Home() {
                 </button>
 
                 <button
-                  className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                  className="bg-yellow-400 text-gray-800 px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md"
                   onClick={() => {
                     setViewOrderProducts(false);
                     getAllOrdersRetailer();
@@ -1130,7 +1131,7 @@ function Home() {
                   Manage Your Products
                 </button>
                 <button
-                  className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                  className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-md"
                   onClick={() => {
                     setViewOrderProducts(null);
 
@@ -1140,14 +1141,10 @@ function Home() {
                 >
                   Manage Orders Placed
                 </button>
-                <br></br>
-                <br></br>
+                </div>
                 {viewOrderProducts === true && (
-                  <div id='anotherDiv' className='border mt-4 p-4'>
-                    <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                      <div className='input-group flex flex-col space-y-2 items-start'></div>
-                    </div>
-                    <h1>All Products</h1>
+                  <div id="anotherDiv" className="bg-white rounded-lg shadow-lg p-8 animate-fade-in">
+                    <h1 className="text-3xl font-bold text-purple-700 mb-6">All Products</h1>
                     <hr />
                     <div>
                       {productNames.map((product, index) => (
@@ -1157,7 +1154,7 @@ function Home() {
                           onClick={() =>
                             checkProductStatusDirect(product.hash, index)
                           }
-                          className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6'
+                          className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                         >
                           {product.name}
                         </button>
@@ -1165,36 +1162,17 @@ function Home() {
                     </div>
                     <br></br>
 
-                    {/* {product && (
-                  <div className='mt-4'>
-                    <p>Name: {product.name}</p>
-                    <p>Owner: {product.owner}</p>
-                    <p>Shipping Address: {product.shippingAddress}</p>
-                    <p>Description: {product.description}</p>
-                    <p>
-                      Product Status:{' '}
-                      {product.state === '0'
-                        ? 'In Process'
-                        : product.state === '1'
-                        ? 'On the Way'
-                        : product.state === '2'
-                        ? 'Delivered'
-                        : 'Unknown'}
-                    </p>
-                  </div>
-                )} */}
-
                     {productDetails && (
                       <div className='mt-4'>
-                        <p>Name: {productDetails[1].name}</p>
-                        <p>Producer: {productDetails[1].producer}</p>
+                        <p className="text-lg font-semibold text-gray-700">Name: {productDetails[1].name}</p>
+                        <p className="text-lg font-semibold text-gray-700">Producer: {productDetails[1].producer}</p>
                         {productDetails[1].retailer !==
                           '0x0000000000000000000000000000000000000000' && (
-                          <p>Retailer:{productDetails[1].retailer}</p>
+                          <p className="text-lg font-semibold text-gray-700">Retailer:{productDetails[1].retailer}</p>
                         )}
 
-                        <p>Description: {productDetails[1].description}</p>
-                        <p>
+                        <p className="text-lg font-semibold text-gray-700">Description: {productDetails[1].description}</p>
+                        <p className="text-lg font-semibold text-gray-700">
                           Product Status:{' '}
                           {productDetails[1].state === '0'
                             ? 'Under Production'
@@ -1210,20 +1188,19 @@ function Home() {
                             ? 'Shipped To User'
                             : 'Unknown'}
                         </p>
-                        <p>
+                        <p className="text-lg font-semibold text-gray-700">
                           Quantity:{' '}
                           {productDetails[1].quantity - productDetails[1].sno}
                         </p>
-                        <p>Price: {productDetails[1].price}</p>
+                        <p className="text-lg font-semibold text-gray-700">Price: {productDetails[1].price}</p>
 
-                        <p>
+                        <div className="mt-4">
                           {productDetails[1].state === '1' && (
                             <button
                               onClick={() => {
-                                // setViewPlaceOrder(true);
                                 openModal();
                               }}
-                              className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                              className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3 text-white transition-colors duration-300 shadow-md"
                             >
                               Place Order
                             </button>
@@ -1316,28 +1293,16 @@ function Home() {
                             </div>
                           )}
 
-                          {/* Product Location History:{' '}
-                            {productDetails.hubLocations.length > 0
-                              ? productDetails.hubLocations.join('---->') +
-                                '--->'
-                              : 'Seller is packaging order'} */}
-                        </p>
-                        {/* <p>
-                            Qr Code(will be scanned by the delivery personnel):
-                          </p>
-                          <br />
-                          <QRCode value={productDetails[0]} /> */}
+                          
+                        </div>
                       </div>
                     )}
                   </div>
                 )}
                 {viewOrderProducts === false && (
                   <div>
-                    <div id='anotherDiv' className='border mt-4 p-4'>
-                      <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                        <div className='input-group flex flex-col space-y-2 items-start'></div>
-                      </div>
-                      <h1>All Product Orders</h1>
+                    <div id="anotherDiv" className="bg-white rounded-lg shadow-lg p-8 animate-fade-in">
+                      <h1 className="text-3xl font-bold text-purple-700 mb-6">All Product Orders</h1>
                       <hr />
                       <div>
                         {orderNames.map(([product, hash], index) => (
@@ -1349,7 +1314,7 @@ function Home() {
                               console.log(hash);
                               checkRetailerOrderStatusDirect(hash, index);
                             }}
-                            className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6'
+                            className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                           >
                             {product.name}
                           </button>
@@ -1357,36 +1322,17 @@ function Home() {
                       </div>
                       <br></br>
 
-                      {/* {product && (
-                  <div className='mt-4'>
-                    <p>Name: {product.name}</p>
-                    <p>Owner: {product.owner}</p>
-                    <p>Shipping Address: {product.shippingAddress}</p>
-                    <p>Description: {product.description}</p>
-                    <p>
-                      Product Status:{' '}
-                      {product.state === '0'
-                        ? 'In Process'
-                        : product.state === '1'
-                        ? 'On the Way'
-                        : product.state === '2'
-                        ? 'Delivered'
-                        : 'Unknown'}
-                    </p>
-                  </div>
-                )} */}
-
                       {orderDetails && (
                         <div className='mt-4'>
-                          <p>Name: {orderDetails[1].name}</p>
-                          <p>Producer: {orderDetails[1].producer}</p>
+                          <p className="text-lg font-semibold text-gray-700">Name: {orderDetails[1].name}</p>
+                          <p className="text-lg font-semibold text-gray-700">Producer: {orderDetails[1].producer}</p>
                           {orderDetails[1].retailer !==
                             '0x0000000000000000000000000000000000000000' && (
-                            <p>Retailer:{orderDetails[1].retailer}</p>
+                            <p className="text-lg font-semibold text-gray-700">Retailer:{orderDetails[1].retailer}</p>
                           )}
 
-                          <p>Description: {orderDetails[1].description}</p>
-                          <p>
+                          <p className="text-lg font-semibold text-gray-700">Description: {orderDetails[1].description}</p>
+                          <p className="text-lg font-semibold text-gray-700">
                             Product Status:{' '}
                             {orderDetails[1].state === '0'
                               ? 'Under Production'
@@ -1402,10 +1348,10 @@ function Home() {
                               ? 'Shipped To User'
                               : 'Unknown'}
                           </p>
-                          <p>Quantity: {orderDetails[1].quantity}</p>
-                          <p>Price : {orderDetails[1].price}</p>
+                          <p className="text-lg font-semibold text-gray-700">Quantity: {orderDetails[1].quantity}</p>
+                          <p className="text-lg font-semibold text-gray-700">Price : {orderDetails[1].price}</p>
 
-                          <p>
+                          <div className="mt-4">
                             {orderDetails[1].state === '2' && (
                               <button
                                 onClick={() => {
@@ -1413,7 +1359,7 @@ function Home() {
 
                                   setViewListOrderConfirm(true);
                                 }}
-                                className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                                className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3 text-white transition-colors duration-300 shadow-md"
                               >
                                 Recieve Product
                               </button>
@@ -1424,7 +1370,7 @@ function Home() {
                                   // setViewPlaceOrder(true);
                                   openModal2();
                                 }}
-                                className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                              className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3 text-white transition-colors duration-300 shadow-md"
                               >
                                 List Product
                               </button>
@@ -1548,7 +1494,7 @@ function Home() {
                               ? productDetails.hubLocations.join('---->') +
                                 '--->'
                               : 'Seller is packaging order'} */}
-                          </p>
+                          </div>
                           {/* <p>
                             Qr Code(will be scanned by the delivery personnel):
                           </p>
@@ -1561,11 +1507,8 @@ function Home() {
                 )}
                 {viewOrderProducts === null && (
                   <div>
-                    <div id='anotherDiv' className='border mt-4 p-4'>
-                      <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                        <div className='input-group flex flex-col space-y-2 items-start'></div>
-                      </div>
-                      <h1>All Orders</h1>
+                    <div id="anotherDiv" className="bg-white rounded-lg shadow-lg p-8 animate-fade-in">
+                      <h1 className="text-3xl font-bold text-purple-700 mb-6">All Orders</h1>
                       <hr />
                       <div>
                         {retailerOrderNames.map(([product, hash], index) => (
@@ -1580,7 +1523,7 @@ function Home() {
                                 index
                               );
                             }}
-                            className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6'
+                            className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                           >
                             {product.name}
                           </button>
@@ -1588,38 +1531,19 @@ function Home() {
                       </div>
                       <br></br>
 
-                      {/* {product && (
-                  <div className='mt-4'>
-                    <p>Name: {product.name}</p>
-                    <p>Owner: {product.owner}</p>
-                    <p>Shipping Address: {product.shippingAddress}</p>
-                    <p>Description: {product.description}</p>
-                    <p>
-                      Product Status:{' '}
-                      {product.state === '0'
-                        ? 'In Process'
-                        : product.state === '1'
-                        ? 'On the Way'
-                        : product.state === '2'
-                        ? 'Delivered'
-                        : 'Unknown'}
-                    </p>
-                  </div>
-                )} */}
-
                       {retailerOrderDetails && (
                         <div className='mt-4'>
-                          <p>Name: {retailerOrderDetails[1].name}</p>
-                          <p>Producer: {retailerOrderDetails[1].producer}</p>
+                          <p className="text-lg font-semibold text-gray-700">Name: {retailerOrderDetails[1].name}</p>
+                          <p className="text-lg font-semibold text-gray-700">Producer: {retailerOrderDetails[1].producer}</p>
                           {retailerOrderDetails[1].retailer !==
                             '0x0000000000000000000000000000000000000000' && (
-                            <p>Retailer:{retailerOrderDetails[1].retailer}</p>
+                            <p className="text-lg font-semibold text-gray-700">Retailer:{retailerOrderDetails[1].retailer}</p>
                           )}
 
-                          <p>
+                          <p className="text-lg font-semibold text-gray-700">
                             Description: {retailerOrderDetails[1].description}
                           </p>
-                          <p>
+                          <p className="text-lg font-semibold text-gray-700">
                             Product Status:{' '}
                             {retailerOrderDetails[1].state === '0'
                               ? 'Under Production'
@@ -1637,17 +1561,17 @@ function Home() {
                               ? 'Delivered To User'
                               : 'Unknown'}
                           </p>
-                          <p>Quantity: {retailerOrderDetails[1].sno}</p>
-                          <p>Price : {retailerOrderDetails[1].price}</p>
+                          <p className="text-lg font-semibold text-gray-700">Quantity: {retailerOrderDetails[1].sno}</p>
+                          <p className="text-lg font-semibold text-gray-700">div className="mt-4"Price : {retailerOrderDetails[1].price}</p>
 
-                          <p>
+                          <div className="mt-4">
                             {retailerOrderDetails[1].state === '4' && (
                               <button
                                 onClick={() => {
                                   // setViewPlaceOrder(true);
                                   shipProductToUser(retailerOrderDetails[0]);
                                 }}
-                                className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                                className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                               >
                                 Ship Order
                               </button>
@@ -1659,7 +1583,7 @@ function Home() {
                                   // shipProductToUser(retailerOrderDetails[0]);
                                   openModal3();
                                 }}
-                                className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                                className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                               >
                                 Deliver Product
                               </button>
@@ -1722,18 +1646,7 @@ function Home() {
                                 </div>
                               </div>
                             )}
-
-                            {/* Product Location History:{' '}
-                            {productDetails.hubLocations.length > 0
-                              ? productDetails.hubLocations.join('---->') +
-                                '--->'
-                              : 'Seller is packaging order'} */}
-                          </p>
-                          {/* <p>
-                            Qr Code(will be scanned by the delivery personnel):
-                          </p>
-                          <br />
-                          <QRCode value={productDetails[0]} /> */}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -1742,11 +1655,11 @@ function Home() {
               </div>
             )}
             {isUserManufacturer === true && (
-              <div>
-                <div className='non-manager-div'>
+              <div className="min-h-screen bg-gradient-to-r from-purple-600 to-indigo-800 p-8">
+                <div className='non-manager-div space-x-4 mb-8'>
                   {/* user */}
                   <button
-                    className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                    className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-colors duration-300 shadow-md"
                     onClick={() => {
                       setViewProducts(true);
                       setViewContainers(false);
@@ -1760,7 +1673,7 @@ function Home() {
                   </button>
 
                   <button
-                    className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                    className="bg-yellow-400 text-gray-800 px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md"
                     onClick={() => {
                       setViewProducts(false);
                       setViewProducerOrders(true);
@@ -1776,7 +1689,7 @@ function Home() {
                     <div>
                       <>
                         <button
-                          className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                          className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600 font-semibold'
                           onClick={() => {
                             setActiveDiv('addprod');
                             setViewAllProducts(false);
@@ -1785,7 +1698,7 @@ function Home() {
                           Create Product
                         </button>
                         <button
-                          className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600'
+                          className='bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600 font-semibold'
                           onClick={() => {
                             setViewProducts(true);
                             setViewContainers(false);
@@ -1799,52 +1712,52 @@ function Home() {
                       </>
 
                       {activeDiv === 'addprod' && (
-                        <div id='addprod' className='border mt-4 p-4'>
+                        <div id='addprod' className='border mt-4 p-4 bg-white rounded-lg shadow-md animate-fade-in-right'>
                           <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                            <h1 className='block'>Product Name:</h1>
+                            <h1 className='block font-semibold text-gray-800 animate-wiggle'>Product Name:</h1>
                             <input
                               type='text'
                               placeholder='Product Name'
                               value={productName}
                               onChange={handleProductNameChange}
-                              className='flex-grow p-2 border rounded'
+                              className='flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600'
                             />
                           </div>
 
                           <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                            <label className='block'>Item Description:</label>
+                            <label className='block font-semibold text-gray-800 animate-wiggle'>Item Description:</label>
                             <input
                               type='text'
                               placeholder='Item Description'
                               value={description}
                               onChange={handleDescriptionChange}
-                              className='flex-grow p-2 border rounded'
+                              className='flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600'
                             />
                           </div>
                           <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                            <label className='block'>Item Quantity:</label>
+                            <label className='block font-semibold text-gray-800 animate-wiggle'>Item Quantity:</label>
                             <input
                               type='number'
                               placeholder='Item Quantity'
                               value={quantity}
                               onChange={handleQuantityChange}
-                              className='flex-grow p-2 border rounded'
+                              className='flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600'
                             />
                           </div>
                           <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                            <label className='block'>Item Price:</label>
+                            <label className='block font-semibold text-gray-800 animate-wiggle'>Item Price:</label>
                             <input
                               type='number'
                               placeholder='Item Price'
                               value={price}
                               onChange={handlePriceChange}
-                              className='flex-grow p-2 border rounded'
+                              className='flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600'
                             />
                           </div>
 
                           <button
                             onClick={createProduct}
-                            className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded'
+                            className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded font-semibold text-white'
                           >
                             Create Product
                           </button>
@@ -1852,10 +1765,10 @@ function Home() {
                       )}
 
                       {viewAllProducts === true && (
-                        <div id='anotherDiv' className='border mt-4 p-4'>
+                        <div id='anotherDiv' className='border mt-4 p-4 bg-white rounded-lg shadow-md animate-fade-in-left'>
                           <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
                             <div className='input-group flex flex-col space-y-2 items-start'>
-                              <label className='block mr-20'>
+                              <label className='block mr-20 font-semibold text-gray-800 animate-wiggle'>
                                 Enter Product Id:
                               </label>
                               <input
@@ -1864,13 +1777,13 @@ function Home() {
                                 value={productHash}
                                 onChange={handleProductHashChange}
                                 onLoad={getAllProducts}
-                                className='flex-grow p-2 border rounded'
+                                className='flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-600'
                               />
                             </div>
                           </div>
                           <button
                             onClick={checkProductStatus}
-                            className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mb-3'
+                            className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mb-3 font-semibold text-white'
                           >
                             Check Product Status
                           </button>
@@ -1887,13 +1800,13 @@ function Home() {
                                       index
                                     )
                                   }
-                                  className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6'
+                                  className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 font-semibold text-white '
                                 >
                                   {product.name}
                                 </button>
                               ))
                             ) : (
-                              <h3>No Products Yet</h3>
+                              <h3 className="text-gray-600 animate-pulse">No Products Yet</h3>
                             )}
                           </div>
                           <br></br>
@@ -1918,18 +1831,18 @@ function Home() {
                 )} */}
 
                           {productDetails && (
-                            <div className='mt-4'>
-                              <p>Name: {productDetails[1].name}</p>
-                              <p>Producer: {productDetails[1].producer}</p>
+                            <div className='mt-4 animate-fade-in-up'>
+                              <p className="font-semibold text-gray-800 animate-wiggle">Name: {productDetails[1].name}</p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">Producer: {productDetails[1].producer}</p>
                               {productDetails[1].retailer !==
                                 '0x0000000000000000000000000000000000000000' && (
-                                <p>Retailer:{productDetails[1].retailer}</p>
+                                <p className="font-semibold text-gray-800 animate-wiggle">Retailer:{productDetails[1].retailer}</p>
                               )}
 
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Description: {productDetails[1].description}
                               </p>
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Product Status:{' '}
                                 {productDetails[1].state === '0'
                                   ? 'Under Production'
@@ -1945,24 +1858,24 @@ function Home() {
                                   ? 'Shipped To User'
                                   : 'Unknown'}
                               </p>
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Quantity Produced: {productDetails[1].quantity}
                               </p>
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Remaining Quantity:
                                 {productDetails[1].quantity -
                                   productDetails[1].sno}
                               </p>
-                              <p>Price: {productDetails[1].price}</p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">Price: {productDetails[1].price}</p>
 
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 {productDetails[1].state === '0' && (
                                   <button
                                     onClick={() => {
                                       produceProduct(productDetails[0]);
                                       console.log(productDetails[0]);
                                     }}
-                                    className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                                    className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3 font-semibold text-white'
                                   >
                                     Produce
                                   </button>
@@ -1986,11 +1899,8 @@ function Home() {
                   )}
                   {viewProducerOrder === true && (
                     <div>
-                      <div id='anotherDiv' className='border mt-4 p-4'>
-                        <div className='input-group flex items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 space-x-4'>
-                          <div className='input-group flex flex-col space-y-2 items-start'></div>
-                        </div>
-                        All Orders Placed
+                      <div id="anotherDiv" className="bg-white rounded-lg shadow-lg p-8 animate-fade-in">
+                        <h1 className="text-3xl font-bold text-purple-700 mb-6">All Orders Placed</h1>
                         <hr />
                         <div>
                           {orderNames.map(([product, hash], index) => (
@@ -2002,14 +1912,14 @@ function Home() {
                                 console.log(hash);
                                 checkRetailerOrderStatusDirect(hash, index);
                               }}
-                              className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6'
+                              className="w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 text-white transition-colors duration-300 shadow-md"
                             >
                               {product.name}
                             </button>
                           ))}
                           {orderNames.length === 0 && (
                             <div>
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 <br></br>You didn't get any orders yet
                               </p>
                             </div>
@@ -2036,23 +1946,23 @@ function Home() {
                 )} */}
                         {orderDetails && (
                           <div className='mt-4'>
-                            <p>Name: {orderDetails[1].name}</p>
-                            <p>Producer: {orderDetails[1].producer}</p>
+                            <p className="font-semibold text-gray-800 animate-wiggle">Name: {orderDetails[1].name}</p>
+                            <p className="font-semibold text-gray-800 animate-wiggle">Producer: {orderDetails[1].producer}</p>
                             {orderDetails[1].retailer !==
                               '0x0000000000000000000000000000000000000000' && (
-                              <p>Retailer:{orderDetails[1].retailer}</p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">Retailer:{orderDetails[1].retailer}</p>
                             )}
 
-                            <p>Description: {orderDetails[1].description}</p>
+                            <p className="font-semibold text-gray-800 animate-wiggle">Description: {orderDetails[1].description}</p>
                             {orderDetails[1].containerHash !==
                               '0x0000000000000000000000000000000000000000000000000000000000000000' && (
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Container Merkle Root:{' '}
                                 {orderDetails[1].containerHash}
                               </p>
                             )}
 
-                            <p>
+                            <p className="font-semibold text-gray-800 animate-wiggle">
                               Product Status:{' '}
                               {orderDetails[1].state === '0'
                                 ? 'Under Production'
@@ -2070,24 +1980,42 @@ function Home() {
                             </p>
                             {orderDetails[1].containerHash ===
                               '0x0000000000000000000000000000000000000000000000000000000000000000' && (
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Quantity Requested By Retailer:{' '}
                                 {orderDetails[1].quantity} units
                               </p>
                             )}
                             {orderDetails[1].containerHash !==
                               '0x0000000000000000000000000000000000000000000000000000000000000000' && (
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Quantity Remaining With Retailer:{' '}
                                 {orderDetails[1].quantity} units
                               </p>
                             )}
                             {orderDetails[1].containerHash !==
                               '0x0000000000000000000000000000000000000000000000000000000000000000' && (
-                              <p>
+                              <p className="font-semibold text-gray-800 animate-wiggle">
                                 Container Merkle Root QR:
                                 <br></br>
-                                <QRCode value={orderDetails[1].containerHash} />
+                                <QRCode bgColor="#ffffff"
+                                  fgColor="#4c51bf" value={orderDetails[1].containerHash} />
+                                {/* <QRCode
+                                  value={accounts[0]}
+                                  size={256}
+                                  bgColor="#ffffff"
+                                  fgColor="#4c51bf"
+                                  level="Q"
+                                  includeMargin={true}
+                                  renderAs="svg"
+                                  imageSettings={{
+                                    src: "https://i5.walmartimages.com/dfw/63fd9f59-b3e1/7a569e53-f29a-4c3d-bfaf-6f7a158bfadd/v1/walmartLogo.svg",
+                                    x: null,
+                                    y: null,
+                                    height: 64,
+                                    width: 64,
+                                    excavate: true,
+                                  }}
+                                /> */}
                               </p>
                             )}
 
@@ -2100,14 +2028,14 @@ function Home() {
                                       // setViewPlaceOrder(true);
                                       sendOrder(orderDetails[0]);
                                     }}
-                                    className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'
+                                    className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 font-semibold text-white'
                                   >
                                     Send Order
                                   </button>
                                 )}
                               {orderDetails[1].containerHash !==
                                 '0x0000000000000000000000000000000000000000000000000000000000000000' && (
-                                <button className='w-full bg-green-500 hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 p-2 rounded mb-3'>
+                                <button className='w-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-2 rounded mt-6 font-semibold text-white'>
                                   Order Placed
                                 </button>
                               )}
@@ -2134,7 +2062,7 @@ function Home() {
           </div>
         )}
       </div>
-      <div className='fixed-footer'>© 2023 Walmart. All Rights Reserved.</div>
+      <div className="fixed-footer bg-gradient-to-r from-purple-600 to-indigo-800  text-white py-4 flex justify-center animate-fade-in-up">© 2023 Walmart. All Rights Reserved.</div>
     </div>
   );
 }
